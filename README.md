@@ -1,12 +1,27 @@
-# React + Vite
+# Reco - 전시회 관리 플랫폼
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Reco는 전시회 및 컨퍼런스 운영을 위한 웹 플랫폼입니다.  
+전시 정보 제공, 참가 신청, QR 입장권 발급 등 **전시회 관련 기능**을 제공합니다.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📋 주요 기능
 
-## Expanding the ESLint configuration
+- **전시회 정보 열람**
+  - 전시회 일정 및 장소 안내
+  - 참가 업체 리스트 및 부스 위치 지도
+  - 컨퍼런스 일정 및 세부내용 제공
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **참가 신청 / 참관 등록**
+  - 온라인 참가 신청서 제출
+  - QR 코드 기반 입장권 발급
+
+- **마이페이지 기능**
+  - 회원정보 수정 및 탈퇴
+  - 참가 신청 내역 조회 및 수정
+  - 참가 이력 관리 (전시회, 컨퍼런스, 소모임 활동)
+  - 참가 증명서 발급 요청
+
+---
+
+## 🚀 프로젝트 구조
