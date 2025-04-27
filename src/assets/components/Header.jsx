@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import logo from "../images/logo/logo.svg"
+import { useNavigate } from 'react-router-dom';
 
 const SiteHeader = styled.header`
   width: 100%;
@@ -11,6 +12,7 @@ const SiteHeader = styled.header`
   align-items: center;
   padding: 0 40px;
   border-bottom: 1px solid #eee;
+  position: fixed;
 `;
 
 const Logo = styled.div`
@@ -88,7 +90,15 @@ const Inner = styled.div`
     
 `
 
-const Header = ()=>{
+const Header = ({isLoggedIn, setIsLoggedIn})=>{
+  const Navigate = useNavigate();
+
+  const moveLogIn = ()=>{
+    Navigate('/login');
+  }
+  const handleLogOut = ()=>{
+    setIsLoggedIn(false);
+  }
     return(
         <SiteHeader>
             <Inner>
@@ -98,7 +108,14 @@ const Header = ()=>{
                     
                 </Nav>
                 <Actions>
-                    <span className="login">로그인</span>
+                {isLoggedIn ? (
+                <>
+                <span onClick={handleLogOut}>로그아웃</span>
+                
+              </>
+              ) : (
+                <span onClick={moveLogIn}>로그인</span>
+              )}
                 </Actions>
             </Inner>
         </SiteHeader>
