@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import logo from  "../assets/images/logo/logo.svg";
 import naverLogo from "../assets/images/button/naverbg.png";
+import { useNavigate } from 'react-router-dom';
+
 const LoginWrap = styled.section`
     width: 100%;
     display: flex;    
@@ -98,6 +100,11 @@ const Title = styled.h2`
 
 
 const Login = ()=>{
+    const Navigate = useNavigate();
+
+    const moveJoin = ()=>{
+      Navigate('/join');
+    }
     return(
         <>
             <LoginWrap>
@@ -107,7 +114,7 @@ const Login = ()=>{
                     <PwInput type='password' placeholder='password' ></PwInput>
                     <BtnArea>
                         <LoginBtn>로그인</LoginBtn>
-                        <JoinBtn>회원가입</JoinBtn>
+                        <JoinBtn onClick={moveJoin}>회원가입</JoinBtn>
                         <NaverBtn>네이버 로그인</NaverBtn>
                     </BtnArea>
                 </LoginArea>

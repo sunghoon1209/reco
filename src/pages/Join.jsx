@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useState } from 'react';
 
 
 const JoinSection = styled.section`
@@ -65,8 +66,23 @@ const InputDefault = styled.input`
     }
     `
 
+const BtnJoin = styled.button`
+    width: 100%;
+    height: 36px;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+`
+
 
 const Join = ()=>{
+    const [inputsFilled, setInputsFilled] = useState(Array(8).fill(false));
+    const sendIt = ()=>{
+        console.log(inputsFilled)
+    }
+
     return(
         <JoinSection>
             <Title>회원가입</Title>
@@ -89,6 +105,10 @@ const Join = ()=>{
                 <FormGroup data-label="휴대폰 번호">
                     <InputDefault type='tel'></InputDefault>
                 </FormGroup>
+                <FormGroup data-label="소속">
+                    <InputDefault type='text'></InputDefault>
+                </FormGroup>
+                <BtnJoin onClick={sendIt}>회원가입</BtnJoin>
                 
             </FormWrap>
         </JoinSection>
