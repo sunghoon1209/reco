@@ -16,7 +16,7 @@ const Title = styled.h2`
     margin-bottom: 20px;
 `
 
-const FormWrap = styled.div`
+const FormWrap = styled.form`
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -25,44 +25,22 @@ const FormWrap = styled.div`
     width: 30%;
 `
 
-const FormGroup = styled.div`
-    width: 100%;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    position: relative;
-    &::before{
-        content: attr(data-label);
-        position: absolute;
-        left: 5px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 14px;
-        font-weight: 400;
-        color: #ddd;
-        transition: 0.7s;
-        background: #fff;
-        padding: 0 5px;
-    }
 
-    &:focus-within::before{
-        color: #000;
-        font-size: 12px;
-        top: 0;
-    }
-`
 
 const InputDefault = styled.input`
     width: 100%;
     height: 36px;
     border: none;
-    border: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
     outline: none;
     padding-left: 10px;
     transition: 0.7s;
+    position: relative;
+
+
 
     &:focus{
-        border: 1px solid #000;
+        border-bottom: 1px solid #000;
     }
     `
 
@@ -73,7 +51,7 @@ const BtnJoin = styled.button`
     color: #fff;
     cursor: pointer;
     font-size: 16px;
-    border: none;
+
 `
 
 
@@ -82,33 +60,37 @@ const Join = ()=>{
     const sendIt = ()=>{
         console.log(inputsFilled)
     }
+    const [formData, setFormData] = useState({
+        user_id: '',
+        name: '',
+        email: '',
+        password: '',
+        password_check: '',
+        phone: '',
+        affiliation: ''
+      });
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+        console.log(formData)
+    };
 
     return(
         <JoinSection>
             <Title>회원가입</Title>
             <FormWrap>
-                <FormGroup data-label="성함">
-                    <InputDefault ></InputDefault>
-                </FormGroup>
-                <FormGroup data-label="아이디">
-                    <InputDefault ></InputDefault>
-                </FormGroup>
-                <FormGroup data-label="비밀번호">
-                    <InputDefault type='password'></InputDefault>
-                </FormGroup>
-                <FormGroup data-label="비밀번호 확인">
-                    <InputDefault type='password'></InputDefault>
-                </FormGroup>
-                <FormGroup data-label="이메일">
-                    <InputDefault type='email'></InputDefault>
-                </FormGroup>
-                <FormGroup data-label="휴대폰 번호">
-                    <InputDefault type='tel'></InputDefault>
-                </FormGroup>
-                <FormGroup data-label="소속">
-                    <InputDefault type='text'></InputDefault>
-                </FormGroup>
-                <BtnJoin onClick={sendIt}>회원가입</BtnJoin>
+                
+                    <InputDefault type='text' id='user_id' name='user_id' placeholder='ID' value={formData.user_id} onChange={handleChange}></InputDefault>
+                    <InputDefault type='text' id='name' name='name' placeholder='성함' value={formData.name} onChange={handleChange}></InputDefault>
+                    <InputDefault type='text' id='email' name='email' placeholder='E-mail' value={formData.email} onChange={handleChange}></InputDefault>
+                    <InputDefault type='password' id='password' name='password' placeholder='비밀번호' value={formData.password} onChange={handleChange}></InputDefault>
+                    <InputDefault type='password' id='password_check' name='password_check' placeholder='비밀번호확인' value={formData.password_check} onChange={handleChange}></InputDefault>
+                    <InputDefault type='text' id='phone' name='phone' placeholder='휴대폰' value={formData.phone} onChange={handleChange}></InputDefault>
+                    <InputDefault type='text' id='affiliation ' name='affiliation' placeholder='소속' value={formData.affiliation} onChange={handleChange}></InputDefault>
+                <BtnJoin type='submit' onClick={sendIt}>회원가입</BtnJoin>
                 
             </FormWrap>
         </JoinSection>
