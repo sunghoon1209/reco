@@ -77,19 +77,31 @@ const Join = ()=>{
         }));
         console.log(formData)
     };
-
+    const inputList = [
+        { id: 'user_id', name: 'user_id', type: 'text', placeholder: 'ID' },
+        { id: 'name', name: 'name', type: 'text', placeholder: '성함' },
+        { id: 'email', name: 'email', type: 'text', placeholder: 'E-mail' },
+        { id: 'password', name: 'password', type: 'password', placeholder: '비밀번호' },
+        { id: 'password_check', name: 'password_check', type: 'password', placeholder: '비밀번호확인' },
+        { id: 'phone', name: 'phone', type: 'text', placeholder: '휴대폰' },
+        { id: 'affiliation', name: 'affiliation', type: 'text', placeholder: '소속' },
+      ];
     return(
         <JoinSection>
             <Title>회원가입</Title>
             <FormWrap>
                 
-                    <InputDefault type='text' id='user_id' name='user_id' placeholder='ID' value={formData.user_id} onChange={handleChange}></InputDefault>
-                    <InputDefault type='text' id='name' name='name' placeholder='성함' value={formData.name} onChange={handleChange}></InputDefault>
-                    <InputDefault type='text' id='email' name='email' placeholder='E-mail' value={formData.email} onChange={handleChange}></InputDefault>
-                    <InputDefault type='password' id='password' name='password' placeholder='비밀번호' value={formData.password} onChange={handleChange}></InputDefault>
-                    <InputDefault type='password' id='password_check' name='password_check' placeholder='비밀번호확인' value={formData.password_check} onChange={handleChange}></InputDefault>
-                    <InputDefault type='text' id='phone' name='phone' placeholder='휴대폰' value={formData.phone} onChange={handleChange}></InputDefault>
-                    <InputDefault type='text' id='affiliation ' name='affiliation' placeholder='소속' value={formData.affiliation} onChange={handleChange}></InputDefault>
+            {inputList.map((input) => (
+                <InputDefault
+                    key={input.id}
+                    type={input.type}
+                    id={input.id}
+                    name={input.name}
+                    placeholder={input.placeholder}
+                    value={formData[input.name]}
+                    onChange={handleChange}
+                />
+            ))}
                 <BtnJoin type='submit' onClick={sendIt}>회원가입</BtnJoin>
                 
             </FormWrap>
