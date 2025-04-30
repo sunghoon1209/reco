@@ -42,7 +42,18 @@ const InputDefault = styled.input`
     &:focus{
         border-bottom: 1px solid #000;
     }
-    `
+    &::placeholder {
+    color: #bbb;
+    font-size: 14px;
+    transition: 0.5s;
+    font-weight:600;
+    }
+    &:focus::placeholder {
+        transform: translateY(-10px);
+        font-size: 12px;
+        color:#111;
+    }
+`
 
 const BtnJoin = styled.button`
     width: 100%;
@@ -85,6 +96,7 @@ const Join = ()=>{
         { id: 'password_check', name: 'password_check', type: 'password', placeholder: '비밀번호확인' },
         { id: 'phone', name: 'phone', type: 'text', placeholder: '휴대폰' },
         { id: 'affiliation', name: 'affiliation', type: 'text', placeholder: '소속' },
+        { id: 'birth', name: 'birth', type: 'date', placeholder: '생년월일' },
       ];
     return(
         <JoinSection>
