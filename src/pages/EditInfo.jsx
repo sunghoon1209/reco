@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useLoginStore } from '../stores/zustandStrore';
 
 const JoinSection = styled.section`
     display: flex;
@@ -90,12 +89,10 @@ const BtnJoin = styled.button`
 `
 
 
-const Join = ()=>{
-    const setIsLoggedIn = useLoginStore((state) => state.setIsLoggedIn);
+const EditInfo = () =>{
     const [inputsFilled, setInputsFilled] = useState(Array(8).fill(false));
     const Navigate = useNavigate();
     const sendIt = ()=>{
-        setIsLoggedIn(true);
         Navigate('/');
     }
 
@@ -111,16 +108,16 @@ const Join = ()=>{
       });
 
       const inputFields = [
-        { id: 'user_email', name: 'user_email', type: 'text', label: '이메일' },
-        { id: 'user_password', name: 'user_password', type: 'password', label: '비밀번호' },        
-        { id: 'user_password_check', name: 'user_password_check', type: 'password', label: '비밀번호 확인' },
-        { id: 'user_name', name: 'user_name', type: 'text', label: '성함' },
-        { id: 'user_affiliation', name: 'user_affiliation', type: 'text', label: '소속' },
-        { id: 'user_phone', name: 'user_phone', type: 'text', label: '휴대전화' }
+        { id: 'user_email', name: 'user_email', type: 'text', label: '이메일' , value : "test@naver.com"},
+        { id: 'user_password', name: 'user_password', type: 'password', label: '비밀번호',value : 123456 },        
+        { id: 'user_password_check', name: 'user_password_check', type: 'password', label: '비밀번호 확인' ,value : 123456},
+        { id: 'user_name', name: 'user_name', type: 'text', label: '성함' , value :'주성훈'},
+        { id: 'user_affiliation', name: 'user_affiliation', type: 'text', label: '소속' , value : '시스포유'},
+        { id: 'user_phone', name: 'user_phone', type: 'text', label: '휴대전화' , value : '01057939412'}
     ];
     return(
         <JoinSection>
-            <Title>회원가입</Title>
+            <Title>회원정보수정</Title>
             <FormWrap>
                 
             {inputFields.map(field => (
@@ -130,15 +127,16 @@ const Join = ()=>{
                         name={field.name}
                         placeholder=" "
                         type={field.type}
+                        value ={field.value}
                     />
                     <InputLabel htmlFor={field.id}>{field.label}</InputLabel>
                 </InputWrap>
             ))}
-                <BtnJoin type='button' onClick={sendIt}>회원가입</BtnJoin>
+                <BtnJoin type='button' onClick={sendIt}>회원정보수정</BtnJoin>
                 
             </FormWrap>
         </JoinSection>
     )
 }
 
-export default Join;
+export default EditInfo;

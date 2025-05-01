@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import logo from "../images/logo/logo.svg"
 import { useNavigate } from 'react-router-dom';
+import { useLoginStore } from '../../stores/zustandStrore';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faCalendar } from '@fortawesome/free-solid-svg-icons';
+
 
 const SiteHeader = styled.header`
   width: 100%;
@@ -89,15 +93,33 @@ const Inner = styled.div`
     align-items: center;
     
 `
+const Icon = styled(FontAwesomeIcon)`
+  font-size: 20px;
+  color: #000;
 
-const Header = ({isLoggedIn, setIsLoggedIn})=>{
+  &:hover {
+    color: #00C2A0;
+    cursor: pointer;
+  }
+`;
+
+
+const Header = ()=>{
+  const {isLoggedIn} = useLoginStore();
+
   const Navigate = useNavigate();
 
   const moveLogIn = ()=>{
     Navigate('/login');
   }
+  const setIsLoggedIn = useLoginStore((state)=> state.setIsLoggedIn);
+
   const handleLogOut = ()=>{
     setIsLoggedIn(false);
+    Navigate('/');
+  }
+  const moveEditInfo = ()=>{
+    Navigate('/edit_info')
   }
     return(
         <SiteHeader>
@@ -108,14 +130,22 @@ const Header = ({isLoggedIn, setIsLoggedIn})=>{
                     
                 </Nav>
                 <Actions>
+                {isLoggedIn ?(
+                  <>
+                    <Icon onClick={moveEditInfo} icon={faUser} />
+                    <Icon icon={faCalendar} />
+                  </>
+                ):(
+                  null
+                )}                  
                 {isLoggedIn ? (
                 <>
-                <span onClick={handleLogOut}>로그아웃</span>
-                
-              </>
-              ) : (
-                <span onClick={moveLogIn}>로그인</span>
-              )}
+                  <span onClick={handleLogOut}>로그아웃</span>                
+                </>
+                ) : (
+                  <span onClick={moveLogIn}>로그인</span>
+                )}
+
                 </Actions>
             </Inner>
         </SiteHeader>
