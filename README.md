@@ -1,3 +1,4 @@
+
 # Reco - 전시회 관리 플랫폼
 
 Reco는 전시회 및 컨퍼런스 운영을 위한 웹 플랫폼입니다.  
@@ -36,8 +37,3 @@ Reco는 전시회 및 컨퍼런스 운영을 위한 웹 플랫폼입니다.
 
 ---
 
-## 📦 설치 및 실행
-
-1. 저장소 클론
-   ```bash
-   git clone https://github.com/sunghoon1209/reco.git
