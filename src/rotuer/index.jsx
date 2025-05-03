@@ -9,7 +9,7 @@ import Layout from "../assets/components/Layout";
 
 const AppRouter = ()=>{
     return(
-        <BrowserRouter>
+        <BrowserRouter basename="/reco">
             <Routes>
                 <Route element={<Layout />}>
                     <Route path="/" element={<Home />} />                
