@@ -3,72 +3,89 @@ import naverLogo from "../assets/images/button/naverbg.png";
 import { useNavigate } from 'react-router-dom';
 import { useLoginStore } from '../stores/zustandStrore';
 
-
-const LoginWrap = styled.section`
+const LoginSection = styled.section`
     width: 100%;
-    display: flex;    
     height: calc(100vh - 80px);
-    align-items: center;
+    display: flex;
     justify-content: center;
+    align-items: center;
     
 `
-const LoginArea = styled.div`
-    width: 100%;    
-    max-width: 400px;
-    justify-content: center;    
-    height: 100%;
-    padding: 20px;
+
+const FormWrap = styled.form`
     display: flex;
     flex-direction: column;
-    gap: 20px;
-`
-
-const IdInput = styled.input`
-    width: 100%;
-    height: 52px;
-    border: none;
-    padding-left: 10px;
-    outline: none;
-    padding: 0 15px;
-    border: 1px solid #ddd;
-`
-const PwInput = styled.input`
-    width: 100%;
-    height: 52px;
-    border: none;
-    padding-left: 10px;
-    outline: none;
-        padding: 0 15px;
-    border: 1px solid #ddd;
-`
-
-const BtnArea = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+    
     gap: 10px;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
 `
-const LoginBtn = styled.button`
+
+
+
+const InputWrap = styled.div`
+    position: relative;
+    width: 320px;
+    margin-bottom: 20px;
+`;
+
+const InputLabel = styled.label`
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #bbb;
+    pointer-events: none;
+    transition: 0.3s ease;
+`;
+
+const InputDefault = styled.input`
     width: 100%;
-    height: 52px;
+    height: 44px;
     border: none;
-    background: #000;
-    color: #fff;
-    font-size: 24px;
-    font-weight: 500;
-    cursor: pointer;
-`
-const JoinBtn = styled.button`
-    width: 100%;
-    height: 52px;
-    border: 1px solid #000;
+    border-bottom: 1px solid #ddd;
+    outline: none;
+    font-size: 15px;
+    padding-left: 10px;
+    padding-top: 10px; /* label 겹치지 않게 */
+    transition: border-bottom 0.7s;
+
+    &:focus {
+        border-bottom: 1px solid #000;
+    }
+
+    &:focus + ${InputLabel},
+    &:not(:placeholder-shown) + ${InputLabel} {
+        left: 0;
+        top: 0;
+        transform: translateY(-50%) scale(0.85);
+        color: #444;
+    }
+    &:not(:placeholder-shown) {
+        border-bottom : 1px solid #000;
+    }
+`;
+
+const BtnJoin = styled.button`
+    width: 320px;
+    height: 48px;
     background: #fff;
     color: #000;
-    font-size: 24px;
-    font-weight: 500;
     cursor: pointer;
+    font-size: 16px;
+    border: 1px solid #000;
+    transition: 0.7s;
+
+    &:hover,&:focus{
+        background: #000;
+        color: #fff;
+    }
 
 `
+
+
 const NaverBtn = styled.button`
     width: 100%;
     height: 52px;    
@@ -91,6 +108,7 @@ const Title = styled.h2`
     font-size: 32px;
     font-weight: 600;
     text-align: center;
+  
 `
 const FindPw = styled.p`
     text-align: right;
@@ -112,20 +130,26 @@ const Login = ()=>{
 
     return(
         <>
-            <LoginWrap>
-                <LoginArea>
+           <LoginSection>
+                <FormWrap>
                     <Title>로그인</Title>
-                    <IdInput type='text' placeholder='E-mail'></IdInput>
-                    <PwInput type='password' placeholder='password' ></PwInput>
-                    <FindPw>패스워드 찾기 </FindPw>
-                    <BtnArea>
-                        <LoginBtn onClick={login}>로그인</LoginBtn>
-                        <JoinBtn onClick={moveJoin}>회원가입</JoinBtn>
-                        <NaverBtn>네이버 로그인</NaverBtn>
-                    </BtnArea>
-                </LoginArea>
+                    <InputWrap>
+                        <InputDefault placeholder=''/>
+                        <InputLabel>이메일</InputLabel>
+                    </InputWrap>
+                    <InputWrap>
+                        <InputDefault placeholder=''/>
+                        <InputLabel>비밀번호</InputLabel>
+                    </InputWrap>
 
-            </LoginWrap>
+                    <FindPw>패스워드 찾기 </FindPw>
+                    <BtnJoin type='button' onClick={login}>로그인</BtnJoin>
+                    <BtnJoin type='button' onClick={moveJoin}>회원가입</BtnJoin>
+                    <BtnJoin type='button'>네이버로그인</BtnJoin>
+                    
+                </FormWrap>
+            </LoginSection>
+            
         </>
     )
 }
