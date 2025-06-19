@@ -47,3 +47,19 @@ Reco는 전시회 및 컨퍼런스 운영을 위한 웹 플랫폼입니다.
 | ❌ 회원 탈퇴   | DELETE      | `/users/me`   | 내 계정 탈퇴                   | ✅         |
 
 
+### 로그인 예시 요청/응답 데이터
+request
+{
+  "email": "hong@example.com",
+  "password": "1234"
+}
+
+response
+{
+  "token": "",
+  "user": {
+    "user_id": ,
+    "name": "",
+    "email": ""
+  }
+}
